@@ -1,0 +1,160 @@
+
+.Dotum() {
+	font-family: Dotum, '돋움', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', Arial, sans-serif;
+}
+.mg() {
+    font-family: 'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕','Noto Sans',Dotum,'돋움',sans-serif !important;
+}
+.NanumGothic() {
+	font-family: Avenir,'Lato',"애플 SD 산돌고딕 Neo","Apple SD Gothic Neo","나눔바른고딕",NanumBarunGothic,"나눔고딕",NanumGothic,"맑은 고딕","Malgun Gothic","돋움",dotum,AppleGothic,sans-serif;
+}
+/* 
+	CSS 크로스브라우징 
+*/
+
+.clearfix(){
+	*zoom:1;
+	&:after {
+		content: '';clear: both;display: block;
+	}
+}
+
+/* 
+	텍스트 관련
+*/
+.text-overflow() {
+	white-space: nowrap; overflow: hidden; text-overflow:ellipsis;
+}
+.text-hide() {
+	font-size: 0; 
+	color: transparent !important;
+}
+
+
+/* 
+	CSS3 효과
+	=====
+	example)
+		elem {
+			.box_shadow(2px 2px 10px rgba(0,0,0,.2));
+		}
+*/
+
+.box_shadow(@shadow) {
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	box-shadow: @shadow;
+}
+
+.blur (@blur : 10px) {
+	-webkit-filter: blur(@blur);
+	-moz-filter: blur(@blur);
+	-o-filter: blur(@blur);
+	-ms-filter: blur(@blur);
+	filter: blur(@blur);
+}
+.border-radius(@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius:@radius;
+}
+
+.border-box() {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* 
+	CSS3 애니메이션 
+	=====
+	example)
+	.keyframes(fade-in;{
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	});
+	.animation(fade-in 0.2s linear infinite alternate)
+*/
+.keyframes(@name; @arguments) {
+	@-webkit-keyframes @name { @arguments(); }
+  	@-moz-keyframes @name { @arguments(); }
+	@-ms-keyframes @name { @arguments(); }
+	@-o-keyframes @name { @arguments(); }
+	@keyframes @name { @arguments(); }
+}
+.animation (@animation) {
+	-webkit-animation: @animation;
+	-moz-animation: @animation;
+	-ms-animation: @animation;
+	-o-animation: @animation;
+	animation: @animation;
+}
+.transform(@transform) {
+	-webkit-transform: @transform;
+	-moz-transform: @transform;
+	-ms-transform: @transform;
+	-o-transform: @transform;
+	transform: @transform;
+}
+.animation-delay (@delay) {
+	-webkit-animation-delay: @delay;
+	-moz-animation-delay: @delay;
+	-ms-animation-delay: @delay;
+	-o-animation-delay: @delay;
+	animation-delay: @delay;
+}
+
+.transition (@prop: all, @time: 1s, @ease: linear) {
+	-webkit-transition: @prop @time @ease;
+	-moz-transition: @prop @time @ease;
+	-o-transition: @prop @time @ease;
+	-ms-transition: @prop @time @ease;
+	transition: @prop @time @ease;
+}
+//.transition(all, 0.5s, ease-in);
+
+.transform-origin (@origin) {
+	-webkit-transform-origin: @origin;
+	-moz-transform-origin: @origin;
+	-ms-transform-origin: @origin;
+	-o-transform-origin: @origin;
+	transform-origin: @origin;
+}
+
+/* 
+	미디어쿼리
+	-----
+	example )
+		elem {
+			@media @mobile {
+				attr : value;
+	    }
+		}
+*/
+@highdensity: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5)",
+              ~"only screen and (min--moz-device-pixel-ratio: 1.5)",
+              ~"only screen and (-o-min-device-pixel-ratio: 3/2)",
+              ~"only screen and (min-device-pixel-ratio: 1.5)";
+@mobile:      ~"only screen and (max-width: 768px)"; //529
+@tablet:      ~"only screen and (max-width: 1024px)";
+@desktop:     ~"only screen and (min-width: 950px) and (max-width: 1128px)";
+@desktop-xl:  ~"only screen and (min-width: 1129px)";
+
+
+.opacity (@opacity) {
+    opacity: @opacity;
+    -webkit-opacity: 	@opacity;
+	-moz-opacity: 		@opacity;
+    -ms-filter: ~`"progid:DXImageTransform.Microsoft.Alpha(opacity=(" + "@{opacity}" * 100 + "))"`; 
+    filter: ~`"alpha(opacity = (" + "@{opacity}" * 100 + "))"`;
+}
+
+.box-sizing() {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-ms-box-sizing: content-box;
+	-o-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+
