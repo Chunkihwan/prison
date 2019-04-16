@@ -2,38 +2,39 @@ var renderer, scene, camera, controls, outside;
 var WIDTH, HEIGHT; 
 var mesh, mesh2;
 
-$(document).ready(function($) {
-    stageResize();
-    init();
-});
+window.onload = function(){
+	stageResize();
+	init();
+}
 
 function init(){
-	renderer = new THREE.WebGLRenderer({ antialias : true});
+	renderer = new THREE.WebGLRenderer({ antialias : true });
 	renderer.setSize( WIDTH, HEIGHT );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	document.body.appendChild( renderer.domElement );
 	renderer.setClearColor(0x000000);
 	
 	camera = new THREE.PerspectiveCamera(50, WIDTH / HEIGHT, .1, 1000); 
-
+  // camera.position.set(0, 0, 0);
+	// camera.lookAt(new THREE.Vector3(0, 50, 60));
+	
 	scene = new THREE.Scene();
 	controls = new THREE.OrbitControls(camera, renderer.domElement);
 	//  horizontally angle control
 	controls.minAzimuthAngle = -Math.PI / 4;
 	controls.maxAzimuthAngle = Math.PI / 4;
+
 	// vertical angle control
 	controls.minPolarAngle = Math.PI / 2;
 	controls.maxPolarAngle = -Math.PI / 2;
 
-    
-
 	controls.enableZoom = true;
 	controls.minDistance = 60;
-    controls.maxDistance = 80;
-    controls.enableDamping = true;
-	controls.dampingFactor = 0.15;
+	controls.maxDistance = 80;
+	controls.autoRotate = true;
+	controls.autoRotateSpeed = .3;
 	controls.update();
-
+	
 	spotLight = new THREE.SpotLight( 0xffffff );
 	spotLight.position.set( 140, 300, 100 );
 	spotLight.intensity = .6;
@@ -56,6 +57,7 @@ function init(){
 		})
 		var geometry_univ  = new THREE.SphereGeometry(400, 32, 32);
 		outside_mesh  = new THREE.Mesh(geometry_univ, material_univ);
+		// mesh.position.set(0, 0, 0);
 		outside.add( outside_mesh );
 		scene.add(outside);
 	})
@@ -64,7 +66,7 @@ function init(){
 	var material = new THREE.MeshPhongMaterial( { color: 0x222222 } );
 	
 	var znum = -30;
-	var ynum = 10;
+	var ynum = 5;
 	
 	var geom_box_left  = new THREE.BoxGeometry(6, 1000, 500);
 	mesh_box_left  = new THREE.Mesh(geom_box_left, material);
@@ -110,7 +112,6 @@ function init(){
 	render();
 }
 
-
 function render() {
 	outside.rotation.y -= 0.0002;
 	controls.update();
@@ -130,3 +131,27 @@ function stageResize() {
 				camera.updateProjectionMatrix();
     }
 }
+
+
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+		height: '360',
+		width: '640',
+		videoId: 'Bh8nZwWDudA',
+		events: {
+			'onReady': onPlayerReady
+		}
+	});
+}
+
+function onPlayerReady(event) {
+	event.target.playVideo();
+}
+

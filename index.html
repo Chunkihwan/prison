@@ -3,13 +3,23 @@
 <head>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/97/three.min.js"></script>
 	<script type="text/javascript" src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+	<script type="text/javascript" src="./js/stats.min.js"></script>
+	<script type="text/javascript" src="./js/prison.js"></script>
 	<style>
-		body {
-			margin: 0;
-			overflow: hidden;
-		}
+	body {
+		margin: 0;
+		overflow: hidden;
+	}
+	canvas {
+		position : absolute;
+		z-index : 10;
+	}
+	#player {
+		position : absolute;
+	}
 	</style>
 </head>
 <body>
+	<div id="player"></div>
 </body>
 </html>
