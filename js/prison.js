@@ -2,8 +2,10 @@ var renderer, scene, camera, controls, outside;
 var WIDTH, HEIGHT; 
 var mesh, mesh2;
 
-stageResize();
-init();
+$(document).ready(function($) {
+    stageResize();
+    init();
+});
 
 function init(){
 	renderer = new THREE.WebGLRenderer({ antialias : true});
@@ -23,9 +25,13 @@ function init(){
 	controls.minPolarAngle = Math.PI / 2;
 	controls.maxPolarAngle = -Math.PI / 2;
 
+    
+
 	controls.enableZoom = true;
 	controls.minDistance = 60;
-	controls.maxDistance = 80;
+    controls.maxDistance = 80;
+    controls.enableDamping = true;
+	controls.dampingFactor = 0.15;
 	controls.update();
 
 	spotLight = new THREE.SpotLight( 0xffffff );
